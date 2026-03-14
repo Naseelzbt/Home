@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Operations Dashboard</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background:#0f0f0f;
+    color:white;
+    text-align:center;
+}
+
+/* Header */
+
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:15px;
+    margin-top:25px;
+}
+
+.logo{
+    height:50px;
+}
+
+h1{
+    color:#00c853;
+}
+
+/* Grid */
+
+.container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(180px,1fr));
+    gap:25px;
+    padding:40px;
+    max-width:1000px;
+    margin:auto;
+}
+
+/* Tiles */
+
+.tile{
+    background:#1c1c1c;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.6);
+    text-decoration:none;
+    color:white;
+    border:1px solid #00c85333;
+    transition:0.25s;
+}
+
+.tile:hover{
+    transform:translateY(-6px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.8);
+    border:1px solid #00c853;
+}
+
+/* Icons */
+
+.tile img{
+    width:60px;
+    margin-bottom:15px;
+}
+
+/* Tile Text */
+
+.title{
+    font-weight:bold;
+    color:#00e676;
+    font-size:16px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+<img src="logo.jpg" class="logo">
+<h1>Dashboard</h1>
+</div>
+
+<div class="container">
+
+<a class="tile" href="https://docs.google.com/spreadsheets/d/1w7MxS7Fh2qs9mAfa5rxZvw_F3WZCyI-FdE0oraKecq0/edit?gid=1660455459#gid=1660455459" target="_blank">
+<img src="https://img.icons8.com/color/96/spreadsheet.png">
+<div class="title">Jobcard</div>
+</a>
+
+<a class="tile" href="https://drive.google.com/drive/folders/1-Pn5123vnbREMzXV41jGurp7PJdqL8Kl?usp=drive_link" target="_blank">
+<img src="https://img.icons8.com/color/96/inventory.png">
+<div class="title">Sales</div>
+</a>
+
+<a class="tile" href="https://docs.google.com/spreadsheets/d/1u2U998lBIhCZdyrjnj8aeveXyDOZByVQh6MUgKCbxhk/edit?gid=1841045641#gid=1841045641" target="_blank">
+<img src="https://img.icons8.com/color/96/barcode-scanner.png">
+<div class="title">Meeting</div>
+</a>
+
+<a class="tile" href="https://docs.google.com/spreadsheets/d/1R5hykEZc_MoYLIqANGQSgsAE9k3hdWp1uqU1_txB8Wc/edit?gid=0#gid=0" target="_blank">
+<img src="https://img.icons8.com/color/96/inspection.png">
+<div class="title">MCS</div>
+</a>
+
+<a class="tile" href="https://docs.google.com/spreadsheets/d/1pquqEjKIWOjzkf2Ibqt2f5aFKk-rJUKP/edit?gid=845969618#gid=845969618" target="_blank">
+<img src="https://img.icons8.com/color/96/combo-chart.png">
+<div class="title">5S</div>
+</a>
+
+<a class="tile" href="https://docs.google.com/spreadsheets/d/1aDnZQyq1nFI6pYaBS8F_4MFREkMccG_uaKRguadwqdA/edit?gid=0#gid=0" target="_blank">
+<img src="https://img.icons8.com/color/96/task.png">
+<div class="title">TPM</div>
+</a>
+
+</div>
+
+</body>
+</html>
