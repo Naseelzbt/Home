@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Montserrat',sans-serif;
+    background:#0a0a0a;
+    color:white;
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+
+  /* Animated background grid */
+  body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(0,200,83,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,200,83,0.04) 1px, transparent 1px);
+    background-size:40px 40px;
+    z-index:0;
+    pointer-events:none;
+  }
+
+  /* Header */
+  .header{
+    position:relative;
+    z-index:1;
+    padding:40px 40px 20px;
+    text-align:center;
+  }
+  .header h1{
+    font-family:'Rajdhani',sans-serif;
+    font-size:clamp(28px,5vw,48px);
+    font-weight:700;
+    letter-spacing:6px;
+    text-transform:uppercase;
+    background:linear-gradient(135deg,#00e676,#00c853,#69f0ae);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    margin-bottom:6px;
+  }
+  .header-line{
+    width:80px;
+    height:3px;
+    background:linear-gradient(90deg,#00c853,transparent);
+    margin:0 auto 8px;
+    border-radius:2px;
+  }
+  .header-sub{
+    font-size:11px;
+    letter-spacing:4px;
+    color:#00c85388;
+    text-transform:uppercase;
+  }
+
+  /* Section Labels */
+  .section-label{
+    position:relative;
+    z-index:1;
+    text-align:left;
+    max-width:1100px;
+    margin:32px auto 12px;
+    padding:0 32px;
+    font-family:'Rajdhani',sans-serif;
+    font-size:13px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    color:#00c853;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .section-label::after{
+    content:'';
+    flex:1;
+    height:1px;
+    background:linear-gradient(90deg,#00c85344,transparent);
+  }
+
+  /* Grid */
+  .container{
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+    padding:0 32px 32px;
+    max-width:1100px;
+    margin:0 auto;
+  }
+
+  /* Tiles */
+  .tile{
+    background:linear-gradient(145deg,#161616,#111);
+    padding:28px 20px;
+    border-radius:14px;
+    border:1px solid #1f1f1f;
+    text-decoration:none;
+    color:white;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
+    transition:all 0.28s cubic-bezier(.4,0,.2,1);
+    position:relative;
+    overflow:hidden;
+  }
+  .tile::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:radial-gradient(ellipse at top left,#00c85311,transparent 70%);
+    opacity:0;
+    transition:opacity 0.3s;
+  }
+  .tile:hover{
+    transform:translateY(-7px);
+    border-color:#00c853;
+    box-shadow:0 0 24px #00c85322, 0 12px 32px rgba(0,0,0,0.6);
+  }
+  .tile:hover::before{opacity:1}
+
+  /* Type badge */
+  .badge{
+    position:absolute;
+    top:10px;
+    right:10px;
+    font-size:9px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    padding:3px 8px;
+    border-radius:20px;
+    font-weight:600;
+    font-family:'Rajdhani',sans-serif;
+  }
+  .badge-folder{background:#1a3a2a;color:#00e676;}
+  .badge-video{background:#3a1a1a;color:#ff6b6b;}
+  .badge-cert{background:#1a2a3a;color:#64b5f6;}
+
+  /* Icon */
+  .tile-icon{
+    width:52px;
+    height:52px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:26px;
+    background:#0f0f0f;
+    border:1px solid #222;
+    flex-shrink:0;
+  }
+
+  /* Tile text */
+  .tile-brand{
+    font-family:'Rajdhani',sans-serif;
+    font-size:11px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:#00c85388;
+  }
+  .tile-title{
+    font-family:'Rajdhani',sans-serif;
+    font-weight:700;
+    font-size:17px;
+    color:#e8e8e8;
+    text-align:center;
+    letter-spacing:1px;
+    line-height:1.2;
+  }
+
+  /* Contact card */
+  .contact-card{
+    position:relative;
+    z-index:1;
+    max-width:1100px;
+    margin:0 auto 40px;
+    padding:0 32px;
+  }
+  .contact-inner{
+    background:linear-gradient(135deg,#141a14,#0e150e);
+    border:1px solid #00c85333;
+    border-radius:14px;
+    padding:22px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+    position:relative;
+    overflow:hidden;
+  }
+  .contact-inner::before{
+    content:'';
+    position:absolute;
+    top:-30px;right:-30px;
+    width:120px;height:120px;
+    background:radial-gradient(circle,#00c85315,transparent 70%);
+  }
+  .contact-left{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .contact-icon{
+    width:44px;height:44px;
+    background:#0a200f;
+    border:1px solid #00c85344;
+    border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px;flex-shrink:0;
+  }
+  .contact-role{
+    font-size:10px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:#00c85388;
+    font-family:'Rajdhani',sans-serif;
+    margin-bottom:3px;
+  }
+  .contact-number{
+    font-family:'Rajdhani',sans-serif;
+    font-size:22px;
+    font-weight:700;
+    letter-spacing:2px;
+    color:#e8e8e8;
+  }
+  .call-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:linear-gradient(135deg,#00c853,#00a040);
+    color:#000;
+    font-family:'Rajdhani',sans-serif;
+    font-weight:700;
+    font-size:14px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    padding:12px 28px;
+    border-radius:8px;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+    transition:all 0.2s;
+    box-shadow:0 4px 16px #00c85333;
+  }
+  .call-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 24px #00c85355;
+    filter:brightness(1.1);
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Marketing Files</h1>
+  <div class="header-line"></div>
+  <div class="header-sub">Asset Library &amp; Resource Hub</div>
+</div>
+
+<!-- Glowstone Section -->
+<div class="section-label">✦ Glowstone Series</div>
+<div class="container">
+
+  <a class="tile" href="https://drive.google.com/drive/folders/1Ccr4ALFMCmF6fBBIkZljh6R3mjeg2Tr_?usp=drive_link" target="_blank">
+    <span class="badge badge-folder">Folder</span>
+    <div class="tile-icon">📁</div>
+    <div class="tile-brand">Glowstone</div>
+    <div class="tile-title">Series Files</div>
+  </a>
+
+  <a class="tile" href="https://drive.google.com/drive/folders/177TDicIwUWemhn1Jkot3vWeOWorUmE1R?usp=drive_link" target="_blank">
+    <span class="badge badge-cert">Cert</span>
+    <div class="tile-icon">📜</div>
+    <div class="tile-brand">Glowstone</div>
+    <div class="tile-title">Certificates</div>
+  </a>
+
+  <a class="tile" href="https://drive.google.com/file/d/1AU58_fr_8YMMI0BvnyxEauL-8_cRhwbf/view?usp=drive_link" target="_blank">
+    <span class="badge badge-video">Video</span>
+    <div class="tile-icon">🎬</div>
+    <div class="tile-brand">Glowstone</div>
+    <div class="tile-title">Factory Video</div>
+  </a>
+
+</div>
+
+<!-- Eternal Section -->
+<div class="section-label">✦ Eternal Series</div>
+<div class="container">
+
+  <a class="tile" href="https://drive.google.com/drive/folders/1AXYnEuHIQ2hW7bWJd31rIE76MCfAT_8s?usp=drive_link" target="_blank">
+    <span class="badge badge-folder">Folder</span>
+    <div class="tile-icon">📁</div>
+    <div class="tile-brand">Eternal</div>
+    <div class="tile-title">Series Files</div>
+  </a>
+
+  <a class="tile" href="https://drive.google.com/drive/folders/1Fs0pFDz6r48bC9i2S8uuc4pAx5FF_3z9?usp=drive_link" target="_blank">
+    <span class="badge badge-cert">Cert</span>
+    <div class="tile-icon">📜</div>
+    <div class="tile-brand">Eternal</div>
+    <div class="tile-title">Certificates</div>
+  </a>
+
+  <a class="tile" href="https://drive.google.com/file/d/1rcrwXoaM3JF_Mv2UGI700CDvWTvpSgGU/view?usp=drive_link" target="_blank">
+    <span class="badge badge-video">Video</span>
+    <div class="tile-icon">🎬</div>
+    <div class="tile-brand">Eternal</div>
+    <div class="tile-title">Factory Video</div>
+  </a>
+
+</div>
+
+<!-- Contact -->
+<div class="section-label">✦ Contact</div>
+<div class="contact-card">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <div class="contact-icon">📞</div>
+      <div>
+        <div class="contact-role">Sales Coordinator</div>
+        <div class="contact-number">+91 97991 14466</div>
+      </div>
+    </div>
+    <a class="call-btn" href="tel:+919799114466">
+      📲 Call Now
+    </a>
+  </div>
+</div>
+
+</body>
+</html>
